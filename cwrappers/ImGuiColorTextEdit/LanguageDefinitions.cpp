@@ -1,14 +1,8 @@
 #include "TextEditor.h"
 
-// Avoid possible linker errors (e.g. windows mingw)
-// by using custom implementations instead of the default
-// isblank and isascii implementations.
-static int cte_isblank(int c) {
-	return c == ' ' || c == '\t';
-}
-static int cte_isascii(int c) {
-	return !(c & ~0x7f);
-}
+// See TextEditor.h
+#define isblank _cte_isblank
+#define isascii _cte_isascii
 
 static bool TokenizeCStyleString(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end)
 {
@@ -430,7 +424,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Cpp()
 		{
 			paletteIndex = PaletteIndex::Max;
 
-			while (in_begin < in_end && cte_isascii(*in_begin) && cte_isblank(*in_begin))
+			while (in_begin < in_end && isascii(*in_begin) && isblank(*in_begin))
 				in_begin++;
 
 			if (in_begin == in_end)
@@ -658,7 +652,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::C()
 		{
 			paletteIndex = PaletteIndex::Max;
 
-			while (in_begin < in_end && cte_isascii(*in_begin) && cte_isblank(*in_begin))
+			while (in_begin < in_end && isascii(*in_begin) && isblank(*in_begin))
 				in_begin++;
 
 			if (in_begin == in_end)
@@ -842,7 +836,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Lua()
 		{
 			paletteIndex = PaletteIndex::Max;
 
-			while (in_begin < in_end && cte_isascii(*in_begin) && cte_isblank(*in_begin))
+			while (in_begin < in_end && isascii(*in_begin) && isblank(*in_begin))
 				in_begin++;
 
 			if (in_begin == in_end)

@@ -10,6 +10,9 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui.h" // for imGui::GetCurrentWindow()
 
+// See TextEditor.h
+#define isblank _cte_isblank
+#define isascii _cte_isascii
 
 struct TextEditor::RegexList {
     std::vector<std::pair<boost::regex, TextEditor::PaletteIndex>> mValue;

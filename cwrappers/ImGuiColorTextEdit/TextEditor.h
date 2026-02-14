@@ -12,6 +12,16 @@
 #include <map>
 #include "imgui.h"
 
+// Avoid possible linker errors (e.g. windows mingw)
+// by using custom implementations instead of the default
+// isblank and isascii implementations.
+static int _cte_isblank(int c) {
+	return c == ' ' || c == '\t';
+}
+static int _cte_isascii(int c) {
+	return !(c & ~0x7f);
+}
+
 class IMGUI_API TextEditor
 {
 public:

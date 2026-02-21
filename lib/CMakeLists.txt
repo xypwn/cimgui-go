@@ -81,9 +81,9 @@ else (IMGUI_STATIC)
 endif (IMGUI_STATIC)
 
 
-if(WIN32)
-  target_compile_definitions(cimgui PUBLIC _POSIX_C_SOURCE=200809L)
-endif(WIN32)
+if(WIN32 and MINGW and CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  target_compile_definitions(cimgui PUBLIC -fno-builtin-isblank)
+endif()
 
 target_compile_definitions(cimgui PUBLIC IMGUI_DISABLE_OBSOLETE_FUNCTIONS=1)
 if (WIN32)

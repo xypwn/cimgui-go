@@ -81,7 +81,7 @@ else (IMGUI_STATIC)
 endif (IMGUI_STATIC)
 
 
-if(WIN32 and MINGW and CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+if(WIN32 AND MINGW AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   target_compile_definitions(cimgui PUBLIC -fno-builtin-isblank)
 endif()
 

@@ -82,7 +82,9 @@ endif (IMGUI_STATIC)
 
 
 if(WIN32 AND MINGW AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  message(STATUS "WIN32 MINGW GCC detected!!!!!!!")
   target_compile_options(cimgui PUBLIC -fno-builtin-isblank)
+  target_compile_definitions(cimgui PUBLIC _CRT_NO_INLINE)
 endif()
 
 target_compile_definitions(cimgui PUBLIC IMGUI_DISABLE_OBSOLETE_FUNCTIONS=1)

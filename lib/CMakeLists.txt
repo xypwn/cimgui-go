@@ -80,6 +80,11 @@ else (IMGUI_STATIC)
   add_library(cimgui SHARED ${IMGUI_SOURCES})
 endif (IMGUI_STATIC)
 
+
+if(WIN32)
+  target_compile_definitions(cimgui PUBLIC __USE_ISOC99=1)
+endif(WIN32)
+
 target_compile_definitions(cimgui PUBLIC IMGUI_DISABLE_OBSOLETE_FUNCTIONS=1)
 if (WIN32)
   list(APPEND IMGUI_LIBRARIES imm32)

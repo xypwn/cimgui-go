@@ -82,7 +82,7 @@ endif (IMGUI_STATIC)
 
 
 if(WIN32)
-  target_compile_definitions(cimgui PUBLIC __USE_ISOC99=1)
+  target_compile_definitions(cimgui PUBLIC _POSIX_C_SOURCE=200809L)
 endif(WIN32)
 
 target_compile_definitions(cimgui PUBLIC IMGUI_DISABLE_OBSOLETE_FUNCTIONS=1)
